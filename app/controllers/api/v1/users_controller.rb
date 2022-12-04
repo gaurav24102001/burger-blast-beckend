@@ -10,19 +10,35 @@ class Api::V1::UsersController < ApplicationController
  
   def show
    
-    user_json = UserSerializer.new(@user).serialized_json
+    user_json = UserSerializer.new(@user).to_json
     render json: user_json
- 
-    
-        # render json: UserSerializer.new(@user).serializable_hash, status: :ok
- 
+
    
   end
 
   
-  # def create
+  def signin
+  user = User.create(name: params[:user][:name],
+                     email: params[:user][:email], 
+                     username: params[:user][:username],
+                     password: params[:user][:password],
+                     password_confirmation: params[:user][:password],
+                    )
+
+  if user.save
+    session[:user_id] = user.id
+    render json: {
+      status:"created",
+      user: user
+    }
   
-  # end
+else
+  render json: {
+    status: "not created"
+  }
+
+end
+end
 
  
 
@@ -36,6 +52,6 @@ class Api::V1::UsersController < ApplicationController
 
 
     def user_params
-      params.require(:user).permit(:name, :username, :password)
+      params.require(:user).permit(:name,:email, :username, :password)
     end
 end

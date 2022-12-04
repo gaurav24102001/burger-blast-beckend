@@ -10,28 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2021_02_18_044246) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_02_051029) do
   create_table "burgers", force: :cascade do |t|
     t.string "name"
     t.float "price"
     t.string "image"
     t.string "status"
     t.string "description"
-    t.integer "burgertable_id"
-    t.string "burgertable_type"
+    t.integer "restaurant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["burgertable_type", "burgertable_id"], name: "index_burgers_on_burgertable_type_and_burgertable_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.string "image"
+    t.string "status"
+    t.string "description"
+    t.integer "user_id"
+    t.integer "restaurant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
     t.string "title"
     t.string "url"
-    t.string "burgertable_type"
-    t.integer "burgertable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["burgertable_type", "burgertable_id"], name: "index_restaurants_on_burgertable_type_and_burgertable_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,11 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2021_02_18_044246) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.string "burgertable_type"
-    t.integer "burgertable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["burgertable_type", "burgertable_id"], name: "index_users_on_burgertable_type_and_burgertable_id"
   end
 
 end

@@ -2,9 +2,8 @@ class Api::V1::BurgersController < ApplicationController
   before_action :set_restaurant
   
     def index
-      # @burgers = @restaurant.burgers
-      @burgers = Burger.all
-  
+      @burgers = @restaurant.burgers
+      # @burgers = Burger.all
       render json: @burgers
     end
   
@@ -21,14 +20,15 @@ class Api::V1::BurgersController < ApplicationController
         render json: {errors: { message: "Please try adding Burger Again"}}
       end 
      
-     end 
-
+   
+    end
   
 
   private
 
   def set_restaurant
-    @restaurant = Restaurant.find(params[:restaurant_id])
+    
+    @restaurant = Restaurant.find_by(url: params[:title])
   end
 
       

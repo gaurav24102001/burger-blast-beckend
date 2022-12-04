@@ -39,13 +39,6 @@ burger6 = dumbo.burgers.create(name: "Mega Burger", price: 14.00, image: "/image
 
 burger7 = dumbo.burgers.create(name: "Pita Burger", price: 11.00, image: "/images/pita.jpg", status: "available", description: "four small grass fed  beef patties , cheddar cheese, with lettuce, tomato, onion and freshly baked wheat pitta." )
 
-
-
-
-
-
-
-
 ditmaspark = Restaurant.create(title: "Burger Hub Ditmas Park", url: "burger-hub-ditmas-park")
 
 burger1 = ditmaspark.burgers.create(name: "CheeseBurger", price: 12.00, image: "/images/cheese.jpg" , status: "available", description: "Classic Burger  with  100%  grass-fed beef with pickes, and a fresh wheat bun.")

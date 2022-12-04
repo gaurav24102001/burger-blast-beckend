@@ -1,4 +1,4 @@
 class Burger < ApplicationRecord
-  belongs_to :burgertable, polymorphic: true
+  belongs_to :restaurant
   
 end
